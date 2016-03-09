@@ -1,0 +1,109 @@
+function convert(num) {
+  var I = 1;     var V = 5;
+  var X = 10;    var L = 50;	
+  var C = 100;   var D = 500;
+  var M = 1000;
+  var numerals = [M, D, C, L, X, V, I];
+  var letters = ["M", "D", "C", "L", "X", "V", "I"];
+  var numbers = [];
+  var converted = [[],[],[],[]];
+  
+  //change input to array of Place values
+  var string = num.toString();
+  var arr = string.split("");
+  
+  //prevent null array values
+  while(arr.length < 4) {
+    arr.unshift("0");
+  }
+  
+  //convert to number from strings
+  for(var i = 0; i < 4; i++){
+    numbers.push(parseInt(arr[i]));
+  }
+  
+  //make array values equal to their place value
+  numbers[0] *= 1000;
+  numbers[1] *= 100;
+  numbers[2] *= 10;
+  
+  //convert place value to numeral
+  
+  //divide 1000
+  while (numbers[0] >= M) {
+    numbers[0] -= M;
+    converted[0].push('M');
+  }
+  
+  //500
+  while(numbers[1] >= D) {
+    numbers[1] -= D;
+    converted[1].push('D');
+  }
+  //100
+  while(numbers[1] >= C) {
+    numbers[1] -= C;
+    converted[1].push('C');
+  }
+    if(converted[1].length === 6) { 
+    converted[1].splice(0,4);
+    converted[1].push('D');
+  }
+  
+  //50
+  while(numbers[2] >= L) {
+    numbers[2] -= L;
+    converted[2].push('L');
+  }
+  
+  //10
+  while(numbers[2] >= X) {
+    numbers[2] -= X;
+    converted[2].push('X');
+  }
+  if(converted[2].length === 5) { // repeat for  100
+    converted[2].splice(0,4);
+    converted[2].push('L');
+  }
+  
+  //5
+  while(numbers[3] >= V) {
+    numbers[3] -= V;
+    converted[3].push('V');
+  }
+  if(converted[3].length === 5) { // repeat for 10 and 100
+    converted[3].splice(0,3);
+    converted[3].push('X');
+  }
+
+  
+  //1
+  while(numbers[3] >= I) {
+    numbers[3] -= I;
+    converted[3].push('I');
+  }
+  if(converted[3].length ===4) { // repeat for 10 and 100
+    converted[3].splice(0,3);
+    converted[3].push('V');
+  }
+  
+ for(i = 0; i < converted.length; i++) {
+    if(converted[i].length === 5) {
+      converted[i].splice(2,3);
+      converted[i] = converted[i].reverse();
+    }
+ }
+  
+ // join converted subarrays
+    for(i = 0; i < converted.length; i++) {
+      converted[i] = converted[i].join("");
+    }
+  
+ // join converted array
+  converted = converted.join("");
+
+  return converted;
+
+}
+
+convert(8);
