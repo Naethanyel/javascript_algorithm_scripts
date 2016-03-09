@@ -4,7 +4,6 @@ function convert(num) {
   var C = 100;   var D = 500;
   var M = 1000;
   var numerals = [M, D, C, L, X, V, I];
-  var letters = ["M", "D", "C", "L", "X", "V", "I"];
   var numbers = [];
   var converted = [[],[],[],[]];
   
@@ -27,7 +26,7 @@ function convert(num) {
   numbers[1] *= 100;
   numbers[2] *= 10;
   
-  //convert place value to numeral
+  //the two if statementa after every other while loop are for converting 9s and 4s
   
   //divide 1000
   while (numbers[0] >= M) {
@@ -45,9 +44,13 @@ function convert(num) {
     numbers[1] -= C;
     converted[1].push('C');
   }
-    if(converted[1].length === 6) { 
-    converted[1].splice(0,4);
-    converted[1].push('D');
+  if(converted[1].length === 5 && (converted[1][0] !== converted[1][converted[1].length -1])) {
+  converted[1].splice(0,4);
+  converted[1].push("M");
+  }
+  if((converted[1][0] === converted[1][3]) && converted[1].length === 4){
+    converted[1].splice(1,3);
+    converted[1].push("D");
   }
   
   //50
@@ -61,20 +64,22 @@ function convert(num) {
     numbers[2] -= X;
     converted[2].push('X');
   }
-  if(converted[2].length === 5) { // repeat for  100
+  if(converted[2].length === 5 && (converted[2][0] !== converted[2][converted[2].length -1])) {
     converted[2].splice(0,4);
-    converted[2].push('L');
+    converted[2].push("C");
   }
+  if((converted[2][0] === converted[2][3]) && converted[2].length === 4){
+    converted[2].splice(1,3);
+    converted[2].push("L");
+  }
+
   
   //5
   while(numbers[3] >= V) {
     numbers[3] -= V;
     converted[3].push('V');
   }
-  if(converted[3].length === 5) { // repeat for 10 and 100
-    converted[3].splice(0,3);
-    converted[3].push('X');
-  }
+
 
   
   //1
@@ -82,28 +87,26 @@ function convert(num) {
     numbers[3] -= I;
     converted[3].push('I');
   }
-  if(converted[3].length ===4) { // repeat for 10 and 100
-    converted[3].splice(0,3);
-    converted[3].push('V');
+  if(converted[3].length === 5 && (converted[3][0] !== converted[3][converted[3].length -1])) {
+    converted[3].splice(0,4);
+    converted[3].push("X");
   }
+  if((converted[3][0] === converted[3][3]) &&  converted[3].length === 4){
+    converted[3].splice(1,3);
+    converted[3].push("V");
+  }
+
   
- for(i = 0; i < converted.length; i++) {
-    if(converted[i].length === 5) {
-      converted[i].splice(2,3);
-      converted[i] = converted[i].reverse();
-    }
- }
-  
- // join converted subarrays
+ //join converted subarrays
     for(i = 0; i < converted.length; i++) {
-      converted[i] = converted[i].join("");
+     converted[i] = converted[i].join("");
     }
   
- // join converted array
+  //join converted array
   converted = converted.join("");
 
   return converted;
 
 }
-
-convert(8);
+//can convert from 1 to 3999, 
+//convert(3999); will print  MMMCMXCIX
