@@ -26,7 +26,7 @@ function convert(num) {
   numbers[1] *= 100;
   numbers[2] *= 10;
   
-  //the two if statementa after every other while loop are for converting 9s and 4s
+  //the two if statements after every other while loop are for converting 9s and 4s
   
   //divide 1000
   while (numbers[0] >= M) {
