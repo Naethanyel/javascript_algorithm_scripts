@@ -1,0 +1,33 @@
+/* all values present from all arrays should be included 
+   in their original order, but with no duplicates in the final array.
+*/
+function unite(arr1, arr2, arr3) {
+  var arr = [arr1, arr2, arr3, arguments[3]].reduce(function(current, next){
+    return current.concat(next);
+  });
+  
+  for(var k = 0; k < arr.length; k++) {
+    var indices = []; //holds indices or all occurences of a value
+    var element = arr[k];
+    var index = arr.indexOf(element);
+    while (index != -1) {
+      indices.push(index);
+      index = arr.indexOf(element, index + 1);
+    }
+    for(var i = 1; i < indices.length; i++){ //delete all occurences of a value, except the first
+      delete arr[indices[i]];
+    }
+  }
+  
+  //filter out nulls
+  function noNulls(value) {
+    if(value !== null){
+      return value;
+    }
+  }
+  
+  var final = arr.filter(noNulls);
+  return final;
+}
+
+unite([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8]);
