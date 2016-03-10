@@ -1,0 +1,41 @@
+function translate(str) {
+  var vowels = ['a','e','i','o','u'];
+  var startsWithVowel = false;
+  var letterCluster = [];
+  var untilVowel = 0;
+  
+  str.toLowerCase();
+  str = str.split("");
+  
+  //check if word starts with a vowel
+  for(var i = 0; i < str.length; i++) {
+    if(str[0] === vowels[i]) {
+      startsWithVowel = true;
+    }
+  }
+  
+  if(startsWithVowel === true) {
+    str.push("way");
+  } else {
+    
+    for( i = 0; i < str.length; i++) {
+      for(var j = 0; j < vowels.length; j++) {
+        if(str[i] === vowels[j]) {
+          untilVowel = i;
+          i += 1000; //break loop on first vowel
+        }
+      }
+    }
+    letterCluster = str.splice(0, untilVowel);
+    letterCluster = letterCluster.join("");
+    letterCluster = letterCluster.toString();
+  
+    str.push(letterCluster);
+    str.push("ay");
+  }
+  str = str.join("");
+  return str;
+}
+
+//translate("glove");
+//returns "oveglay
