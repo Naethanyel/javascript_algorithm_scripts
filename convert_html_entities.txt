@@ -1,0 +1,17 @@
+function convert(str) {
+  var and = /&/g;
+  var less = /</g;
+  var great = />/g;
+  var quote = /"/g;
+  var apos = /'/g;
+  
+  str = str.replace(and,"&amp;");
+  str = str.replace(less,"&lt;");
+  str = str.replace(great,"&gt;");
+  str = str.replace(quote,"&quot;");
+  str = str.replace(apos,"&apos;");
+  return str;
+}
+
+//convert("Hamburgers < Pizza < Tacos");
+// returns // returns 
