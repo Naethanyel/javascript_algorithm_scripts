@@ -1,0 +1,35 @@
+function pair(str) {
+  str = str.split("");
+  var pair = [];
+  var matches = [];
+  for(var i = 0; i < str.length; i++) {
+    if(str[i] === "A") {
+      pair = [];
+      pair.push("A");
+      pair.push("T");
+      matches.push(pair);
+    }
+    if(str[i] === "T") {
+      pair = [];
+      pair.push("T");
+      pair.push("A");
+      matches.push(pair);
+    }
+    if(str[i] === "C") {
+      pair = [];
+      pair.push("C");
+      pair.push("G");
+      matches.push(pair);
+    }
+    if(str[i] === "G") {
+      pair = [];
+      pair.push("G");
+      pair.push("C");
+      matches.push(pair);
+    }
+  }
+      
+  return matches;
+}
+
+pair("GCG");
