@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Convert a string to spinal case. 
 Spinal case is all-lowercase-words-joined-by-dashes.
@@ -37,3 +38,38 @@ function spinalCase(str) {
 
 //spinalCase('thisIsSpinalTap');
 //retuns "this-is-spinal-tap"
+=======
+//works for spaces and dashes and camel case
+function spinalCase(str) {
+  
+  var space = /\s/g;
+  var under = /_/g;
+  var hasSpace = str.search(/\s/i); 
+  var hasScore = str.search(/_/i); 
+  var capIndex = []; //4,6,12
+  str = str.replace(space, '-');
+  str = str.replace(under, '-');
+  
+  if(hasSpace === -1 && hasScore === -1) {
+    for(var i = 0; i < str.length; i++) {
+      if(str[i] === str[i].toUpperCase()){
+        capIndex.push(str.indexOf(str[i]));
+      }
+    }
+    
+    //convert from camel case
+    str = str.split("");
+    for(var k = 0; k < capIndex.length; k++){
+      str.splice(capIndex[k]+k, 0, '-');
+    }
+    str = str.join("");
+    //end convert from camel case
+  }
+  
+  str = str.toLowerCase();
+  return str;
+}
+
+//spinalCase('thisIsSpinalTap');
+//retuns "this-is-spinal-tap"
+>>>>>>> 9d27421f197a3fd5983c78dd4b7ea9f6609cfa4b
