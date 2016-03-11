@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*
 Convert a string to spinal case. 
 Spinal case is all-lowercase-words-joined-by-dashes.
@@ -72,4 +72,3 @@ function spinalCase(str) {
 
 //spinalCase('thisIsSpinalTap');
 //retuns "this-is-spinal-tap"
->>>>>>> 9d27421f197a3fd5983c78dd4b7ea9f6609cfa4b
