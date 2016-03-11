@@ -1,0 +1,26 @@
+function sumFibs(num) {
+  
+  //find fibonacci numbers up to input
+  var fib = [0, 1,];
+  while(fib[fib.length - 1] < num) {
+    fib.push(fib[fib.length-1] + fib[fib.length-2]);
+  }
+  
+  //if last fib number is larger then input, remove it.
+  if(fib[fib.length - 1] > num) {
+    fib.pop();
+  }
+  
+  //find odd numbers
+  var oddFibs = [];
+  for(var i = 0; i < fib.length; i++){
+    if(fib[i] % 2 === 1) {
+      oddFibs.push(fib[i]);
+    }
+  }
+  //add together all values in the array
+  oddFibs = oddFibs.reduce(function(previousValue, currentValue) {
+  return previousValue + currentValue;
+  });
+  return oddFibs;
+}
