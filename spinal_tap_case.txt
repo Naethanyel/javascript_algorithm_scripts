@@ -1,14 +1,19 @@
-//works for spaces and dashes and camel case
+/*
+Convert a string to spinal case. 
+Spinal case is all-lowercase-words-joined-by-dashes.
+*/
 function spinalCase(str) {
   
-  var space = /\s/g;
+  var space = /\s/g; //regexes for converting spaces and underscores to dashes
   var under = /_/g;
   var hasSpace = str.search(/\s/i); 
   var hasScore = str.search(/_/i); 
-  var capIndex = []; //4,6,12
+  var capIndex = []; //use to find Capitals in camelCase strings
+  
   str = str.replace(space, '-');
   str = str.replace(under, '-');
   
+  //if the string has no spaces or dashes, check for camel case
   if(hasSpace === -1 && hasScore === -1) {
     for(var i = 0; i < str.length; i++) {
       if(str[i] === str[i].toUpperCase()){
@@ -16,13 +21,14 @@ function spinalCase(str) {
       }
     }
     
-    //convert from camel case
+    //insert dash before capital letters
+    // should be refactored to use regex if at all possible
     str = str.split("");
     for(var k = 0; k < capIndex.length; k++){
       str.splice(capIndex[k]+k, 0, '-');
     }
     str = str.join("");
-    //end convert from camel case
+    
   }
   
   str = str.toLowerCase();
