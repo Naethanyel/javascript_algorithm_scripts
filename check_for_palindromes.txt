@@ -1,0 +1,19 @@
+function palindrome(str) {
+  var reversed;
+  str = str.replace(/[^A-Za-z0-9]/g, '');
+  str = str.toLowerCase();
+  
+  reversed = str.split("");
+  reversed.reverse();
+  reversed = reversed.join("");
+  
+  if(str === reversed){
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+//palindrome("Race Car");
