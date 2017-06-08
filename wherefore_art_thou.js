@@ -7,23 +7,21 @@ function whatIsInAName(collection, source) {
 
   collection.forEach(function(collectionObject) { 
    
-    var goodObject = true; // used for process of elimination
+    var goodObject = true; //presume object matches... used for process of elimination
 
     Object.keys(collectionObject).forEach(function(prop) {// for each property in object
-      if(source.hasOwnProperty(prop)) { //check that object's key is in srcKEys
-        if(collectionObject[prop] !== source[prop]) { // check that value of the key is the same
+      if(source.hasOwnProperty(prop)) { 
+        if(collectionObject[prop] !== source[prop]) { // check if key value is the same
           goodObject = false;
         }
       } 
-    });
+    });//
 
-    if(goodObject) { //check if object has all the srcKeys
-      srcKeys.forEach(function(key) {
-        if(!collectionObject.hasOwnProperty(key)) {
-          goodObject = false;
-        }
-      }); 
-    }
+    srcKeys.forEach(function(key) {  //check if object has all the srcKeys
+      if(!collectionObject.hasOwnProperty(key)) {
+        goodObject = false;
+      }
+    }); 
 
     if(goodObject) {
       arr.push(collectionObject);
